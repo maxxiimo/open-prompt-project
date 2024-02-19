@@ -2,8 +2,11 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from "@material-ui/core/Typography";
+import TextField from '@mui/material/TextField';
+import SendIcon from '@mui/icons-material/Send';
 
 const ImageBackdrop = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -21,7 +24,7 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
   display: 'block',
   padding: 0,
   borderRadius: 0,
-  height: '40vh',
+  height: '20vh',
   [theme.breakpoints.down('md')]: {
     width: '100% !important',
     height: 100,
@@ -55,63 +58,76 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
 
 const images = [
   {
-    url: '/static/img/20231018_180624_optimized.jpg',
-    title: 'NLP Research',
-    width: '30%',
-    link: 'nlp',
+    url: '/img/technique1.jpg',
+    title: 'Technique 1',
+    width: '33%',
+    link: 'technique1',
   },
   {
-    url: '/static/img/20231020_142059_optimized.jpg',
-    title: 'London 2023',
-    width: '40%',
-    link: 'london',
+    url: '/img/technique1.jpg',
+    title: 'Technique 2',
+    width: '34%',
+    link: 'technique1',
   },
   {
-    url: '/static/img/20231014_143134_optimized.jpg',
-    title: 'Kumia',
-    width: '30%',
-    link: 'kumia',
+    url: '/img/technique1.jpg',
+    title: 'Technique 3',
+    width: '33%',
+    link: 'technique1',
   },
   {
-    url: '/static/img/20231221_204447_optimized.jpg',
-    title: 'New York 2023',
-    width: '40%',
-    link: 'new_york',
+    url: '/img/technique1.jpg',
+    title: 'Technique 4',
+    width: '33%',
+    link: 'technique1',
   },
   {
-    url: '/static/img/vlogging.png',
-    title: 'Vlogging!',
-    width: '20%',
-    link: 'https://www.youtube.com/@nickumia',
+    url: '/img/technique1.jpg',
+    title: 'Technique 5',
+    width: '34%',
+    link: 'technique1',
   },
   {
-    url: '/static/img/road_trip_main.jpg',
-    title: 'Road Trip Across America',
-    width: '40%',
-    link: 'spiritual_tech',
+    url: '/img/technique1.jpg',
+    title: 'Technique 6',
+    width: '33%',
+    link: 'technique1',
   },
   {
-    url: '/static/img/financial_background.jpg',
-    title: 'Financial Resources',
-    width: '50%',
-    link: '',
-    // link: 'financial',
+    url: '/img/technique1.jpg',
+    title: 'Technique 7',
+    width: '33%',
+    link: 'technique1',
   },
   {
-    url: '/static/img/spiritual_background.jpg',
-    title: 'Hinduism + Spiritual Resources',
-    width: '50%',
-    link: 'spiritual',
+    url: '/img/technique1.jpg',
+    title: 'Technique 8',
+    width: '34%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 9',
+    width: '33%',
+    link: 'technique1',
   },
 ];
 
 export default function HomeMain() {
   return (
     <React.Fragment>
-    <Container component="section" sx={{ mt: 8, mb: 4 }}>
-      <Typography variant="h4" marked="center" align="center" component="h2">
-        Connecting People through Technology for a Better Tomorrow
-      </Typography>
+    <Container component="section" sx={{ mt: 8, mb: 4, width: '50%', float: 'left' }}>
+      <TextField fullWidth multiline label="Context" id="Context" sx={{ mb: 4 }}
+        inputProps={{ minRows: 3 }} />
+      <TextField fullWidth multiline label="Prompt" id="Prompt" sx={{ mb: 4 }}
+        inputProps={{ minRows: 3 }} />
+      <TextField fullWidth multiline label="Expected Answer" id="Answer" sx={{ mb:4 }}
+        inputProps={{ minRows: 3 }} />
+      <Button variant="contained" sx={{ float: 'right' }} endIcon={<SendIcon />}>
+        Submit
+      </Button>
+    </Container>
+    <Container disableGutters component="section" sx={{ mt: 0, mb: 4, width: '50%', float: 'right' }}>
       <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
         {images.map((image) => (
           <ImageIconButton

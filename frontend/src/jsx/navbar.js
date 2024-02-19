@@ -7,16 +7,10 @@ import IconButton from "@material-ui/core/IconButton";
 
 import Tooltip from '@mui/material/Tooltip';
 
+import AddIcon from '@mui/icons-material/Add';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
-import BookIcon from '@mui/icons-material/Book';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import ChangeHistoryIcon from '@mui/icons-material/ChangeHistory';
-import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
-import BlurOnIcon from '@mui/icons-material/BlurOn';
-import CoPresent from '@mui/icons-material/CoPresent';
-
 
 // react.school/material-ui
 
@@ -38,12 +32,7 @@ export default function ButtonAppBar({title, menu, login}) {
 		"Login": <LoginIcon />,
 		"Logout": <LogoutIcon />,
 		"Home": <HomeIcon />,
-		"Posts": <BookIcon />,
-    "NLP": <CoPresent />,
-		"Processing": <ChangeHistoryIcon />,
-		"Language": <CheckBoxOutlineBlankIcon />,
-		"Natural": <CircleOutlinedIcon />,
-		"Kumia": <BlurOnIcon />,
+    "Create": <AddIcon />,
 	};
 
 
