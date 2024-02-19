@@ -1,10 +1,14 @@
 {
-  "name": "ui",
+  "name": "opp-ui",
   "version": "1.0.0",
   "description": "Basic Front-end for the Open Prompt Project",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "keywords": [
     "open-source", "prompt", "OPP", "open prompt project", "LLMs"
