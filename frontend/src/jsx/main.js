@@ -8,17 +8,7 @@ import blue from "@material-ui/core/colors/blue";
 import lightGreen from "@material-ui/core/colors/lightGreen";
 
 import Navbar from './navbar';
-import RealmNavbar from './realmnav';
-import AllPosts from './posts';
-import PostDisplay from './post';
-import NLPSelector from './main_selection';
-import Realm from './realm';
-import Kumia from './kumia';
-import SyntaxApp from './syntax';
-import NLPMain from './nlp_main';
 import HomeMain from './home_main';
-
-import decrypt from "./encryption";
 
 
 const theme = createTheme({
