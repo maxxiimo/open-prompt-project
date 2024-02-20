@@ -12,16 +12,16 @@ import {
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { CMTextField } from "../GlobalComponents/CMTextField";
-import { getHeaderConfig } from "../GlobalFunctions/API_header_config";
+import { CMTextField } from "./CMTextField";
+import { getHeaderConfig } from "./API_header_config";
 import { useSelector } from "react-redux";
-import { selectIsAuthenticated, selectUser } from "../../redux/userSlice";
-import { API_URLS } from "../GlobalFunctions/APIs";
-import { ROUTE_PATH } from "../GlobalFunctions/routePath";
+import { selectIsAuthenticated, selectUser } from "./redux/userSlice";
+import { API_URLS } from "./APIs";
+import { ROUTE_PATH } from "./routePath";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../redux/userSlice";
+import { loginUser } from "./redux/userSlice";
 
-const LoginModel = ({}) => {
+const HomeModel = ({}) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [helperText, setHelperText] = useState({
@@ -155,7 +155,7 @@ const LoginModel = ({}) => {
             sx={{ marginTop: "10px", borderRadius: 20, width: "60%" }}
             onClick={onClickLogin}
           >
-            Login
+            Login changed!
           </Button>
         </Grid>
       </Grid>
@@ -181,10 +181,10 @@ const LoginModel = ({}) => {
   );
 };
 
-export const LoginPage = () => {
+export const HomePage = () => {
   return (
     <Grid>
-      <LoginModel />
+      <HomeModel />
     </Grid>
   );
 };

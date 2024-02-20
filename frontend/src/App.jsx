@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LoginPage } from "./Pages/Homepage/LoginPage";
+import { HomePage } from "./HomePage";
 import {
   StyledEngineProvider,
   ThemeProvider,
@@ -11,7 +11,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { ROUTE_PATH } from "./Pages/GlobalFunctions/routePath";
+import { ROUTE_PATH } from "./routePath";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
@@ -22,7 +22,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path={ROUTE_PATH.HOME_PAGE} element={<LoginPage />} />
+        <Route path={ROUTE_PATH.HOME_PAGE} element={<HomePage />} />
       </>
     )
   );
