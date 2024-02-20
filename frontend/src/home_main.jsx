@@ -113,7 +113,8 @@ const images = [
   },
 ];
 
-export default function HomeMain() {
+export default function HomePage() {
+const HomeModel = ({}) => {
   return (
     <React.Fragment>
     <Container component="section" sx={{ mt: 8, mb: 4, width: '50%', float: 'left' }}>
@@ -180,3 +181,11 @@ export default function HomeMain() {
     </React.Fragment>
   );
 }
+
+export const HomePage = () => {
+  return (
+    <Grid>
+      <HomeModel />
+    </Grid>
+  );
+};
