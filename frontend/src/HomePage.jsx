@@ -1,14 +1,13 @@
-import {
-  Button,
-  Grid,
-  Typography,
-  Paper,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  FormHelperText,
-} from "@mui/material";
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import ButtonBase from '@mui/material/ButtonBase';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import SendIcon from '@mui/icons-material/Send';
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -22,11 +21,11 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "./redux/userSlice";
 
 const HomeModel = ({}) => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [prompt, setUserName] = useState("");
+  const [answer, setPassword] = useState("");
   const [helperText, setHelperText] = useState({
     username: "",
-    password: "",
+    answer: "",
     userRole: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
@@ -43,15 +42,15 @@ const HomeModel = ({}) => {
 
   const onInputChange = (value, setDetails) => {
     setErrorMessage("");
-    setHelperText({ username: "", password: "" });
+    setHelperText({ username: "", answer: "" });
     setDetails(value);
   };
 
   const onClickLogin = () => {
-    if (!userName || !password || !selectedUser) {
+    if (!prompt || !answer || !selectedUser) {
       setHelperText({
-        username: userName ? "" : "Please enter username",
-        password: password ? "" : "please enter password",
+        username: prompt ? "" : "Please enter username",
+        answer: answer ? "" : "please enter answer",
         userRole: selectedUser ? "" : "Please select the user",
       });
 
@@ -59,8 +58,8 @@ const HomeModel = ({}) => {
     }
 
     let payload = {
-      userName: userName,
-      password: password,
+      prompt: prompt,
+      answer: answer,
       userRole: selectedUser,
     };
 
@@ -83,101 +82,74 @@ const HomeModel = ({}) => {
   };
 
   return (
-    <Paper
-      component={Grid}
-      container
-      sx={styles.container}
-      elevation={4}
-      md={7}
-      item
-    >
-      <Grid md={7} sx={styles.internalContainer} sm={12} item>
-        <Grid sx={styles.loginHeading}>
-          <Typography variant="h6">Welcome Back!</Typography>
-          <Typography>Sign in to your account</Typography>
-        </Grid>
-        <Grid md={10} item>
-          <CMTextField
-            placeholder={"User Name"}
-            sx={{ marginBottom: "15px" }}
-            onChange={(event) => {
-              onInputChange(event.target.value, setUserName);
+
+    <React.Fragment>
+    <Container component="section" sx={{ mt: 8, mb: 4, width: '50%', float: 'left' }}>
+      <TextField fullWidth multiline label="Context" id="Context" sx={{ mb: 4 }}
+        onChange={(event) => { onInputChange(event.target.value, setContext); }}
+        inputProps={{ minRows: 3 }} />
+      <TextField fullWidth multiline label="Prompt" id="Prompt" sx={{ mb: 4 }}
+        onChange={(event) => { onInputChange(event.target.value, setPrompt); }}
+        inputProps={{ minRows: 3 }} />
+      <TextField fullWidth multiline label="Expected Answer" id="Answer" sx={{ mb:4 }}
+        onChange={(event) => { onInputChange(event.target.value, setAnswer); }}
+        inputProps={{ minRows: 3 }} />
+      <Button variant="contained" sx={{ float: 'right' }} endIcon={<SendIcon />}
+        onClick={onClickLogin}>
+        Submit
+      </Button>
+    </Container>
+        <Container disableGutters component="section" sx={{ mt: 0, mb: 4, width: '50%', float: 'right' }}>
+      <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
+        {images.map((image) => (
+          <ImageIconButton
+            key={image.title}
+            href={image.link}
+            style={{
+              width: image.width,
             }}
-            helperText={helperText.username}
-            error={Boolean(helperText.username)}
-            label="User Name"
-          />
-          <CMTextField
-            placeholder={"Password"}
-            sx={{ marginBottom: "15px" }}
-            type={"password"}
-            onChange={(event) => {
-              onInputChange(event.target.value, setPassword);
-            }}
-            helperText={helperText.password}
-            error={Boolean(helperText.password)}
-            label="Password"
-          />
-          <FormControl
-            variant="outlined"
-            size="small"
-            sx={{ width: "200px" }}
-            error={helperText.userRole}
           >
-            <InputLabel>User Type</InputLabel>
-            <Select
-              value={selectedUser}
-              onChange={(event) => setSelectedUser(event.target.value)}
-              sx={{ width: "200px" }}
-              size="small"
-              variant="outlined"
-              label={"User Type"}
+            <Box
+              sx={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center 40%',
+                backgroundImage: `url(${image.url})`,
+              }}
+            />
+            <ImageBackdrop className="imageBackdrop" />
+            <Box
+              sx={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'common.white',
+              }}
             >
-              <MenuItem value="System Admin">System Admin</MenuItem>
-              <MenuItem value="Admin">Facility Admin</MenuItem>
-              <MenuItem value="Teacher">Staff</MenuItem>
-              <MenuItem value="Parent">Parent</MenuItem>
-            </Select>
-            <FormHelperText>
-              {helperText.userRole
-                ? "Please select a user type"
-                : "Select the user type"}
-            </FormHelperText>
-          </FormControl>
-          {errorMessage ? (
-            <Typography style={{ fontSize: 12, color: "red" }}>
-              {errorMessage}
-            </Typography>
-          ) : null}
-          <Button
-            color="primary"
-            variant="contained"
-            sx={{ marginTop: "10px", borderRadius: 20, width: "60%" }}
-            onClick={onClickLogin}
-          >
-            Login changed!
-          </Button>
-        </Grid>
-      </Grid>
-      <Grid md={5} item style={{ padding: 15, paddingTop: 35 }}>
-        <Typography sx={{ mt: "10px" }} variant="h6">
-          Dont have an Account?
-        </Typography>
-        <Typography sx={{ fontSize: "14px", mt: "25px" }}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s
-        </Typography>
-        <Button
-          variant="outlined"
-          fullWidth={true}
-          sx={{ borderRadius: 20, mt: "20px" }}
-          onClick={() => navigate(ROUTE_PATH.CREATE_ACCOUNT)}
-        >
-          Create Account
-        </Button>
-      </Grid>
-    </Paper>
+              <Typography
+                component="h3"
+                variant="h6"
+                color="inherit"
+                className="imageTitle"
+              >
+                {image.title}
+                <div className="imageMarked" />
+              </Typography>
+            </Box>
+          </ImageIconButton>
+        ))}
+      </Box>
+    </Container>
+    </React.Fragment>
   );
 };
 
@@ -208,3 +180,108 @@ const styles = {
     borderRightColor: "#dad2d2",
   },
 };
+
+const ImageBackdrop = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
+  background: '#000',
+  opacity: 0.5,
+  transition: theme.transitions.create('opacity'),
+}));
+
+const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
+  position: 'relative',
+  display: 'block',
+  padding: 0,
+  borderRadius: 0,
+  height: '20vh',
+  [theme.breakpoints.down('md')]: {
+    width: '100% !important',
+    height: 100,
+  },
+  '&:hover': {
+    zIndex: 1,
+  },
+  '&:hover .imageBackdrop': {
+    opacity: 0.15,
+  },
+  '&:hover .imageMarked': {
+    opacity: 0,
+  },
+  '&:hover .imageTitle': {
+    border: '4px solid currentColor',
+  },
+  '& .imageTitle': {
+    position: 'relative',
+    padding: `${theme.spacing(2)} ${theme.spacing(4)} 14px`,
+  },
+  '& .imageMarked': {
+    height: 3,
+    width: 18,
+    background: theme.palette.common.white,
+    position: 'absolute',
+    bottom: -2,
+    left: 'calc(50% - 9px)',
+    transition: theme.transitions.create('opacity'),
+  },
+}));
+
+const images = [
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 1',
+    width: '33%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 2',
+    width: '34%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 3',
+    width: '33%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 4',
+    width: '33%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 5',
+    width: '34%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 6',
+    width: '33%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 7',
+    width: '33%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 8',
+    width: '34%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 9',
+    width: '33%',
+    link: 'technique1',
+  },
+];
