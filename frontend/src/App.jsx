@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { HomePage } from "./HomePage";
+import { NavBar } from "./NavBar";
 import {
   StyledEngineProvider,
   ThemeProvider,
@@ -28,15 +29,16 @@ function App() {
   );
 
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider theme={theme}>
-          <StyledEngineProvider injectFirst>
-            <RouterProvider router={router} />
-          </StyledEngineProvider>
-        </ThemeProvider>
-      </PersistGate>
-    </Provider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={theme}>
+            <NavBar />
+            <StyledEngineProvider injectFirst>
+              <RouterProvider router={router} />
+            </StyledEngineProvider>
+          </ThemeProvider>
+        </PersistGate>
+      </Provider>
   );
 }
 
