@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import SendIcon from '@mui/icons-material/Send';
-import Tooltip from '@mui/material/Tooltip';
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +20,7 @@ import { ROUTE_PATH } from "./routePath";
 import { useDispatch } from "react-redux";
 import { loginUser } from "./redux/userSlice";
 
-const HomeModel = ({}) => {
+const CreateModel = ({}) => {
   const [prompt, setUserName] = useState("");
   const [answer, setPassword] = useState("");
   const [helperText, setHelperText] = useState({
@@ -85,21 +84,41 @@ const HomeModel = ({}) => {
   return (
 
     <React.Fragment>
-      <Container disableGutters component="section" sx={{ mt: 0, width: '100%' }} style={{ alignItems: 'center', justifyContent: 'center' }}>
-      <Box sx={{ margin: 'auto', display: 'flex', flexWrap: 'wrap' }}>
-          <div style={{ width: '20%' }} />
+    <Container component="section" sx={{ mt: 8, mb: 4, width: '50%', float: 'left' }}>
+      <TextField fullWidth multiline label="Context" id="Context" sx={{ mb: 4 }}
+        onChange={(event) => { onInputChange(event.target.value, setContext); }}
+        inputProps={{ minRows: 3 }} />
+      <TextField fullWidth multiline label="Prompt" id="Prompt" sx={{ mb: 4 }}
+        onChange={(event) => { onInputChange(event.target.value, setPrompt); }}
+        inputProps={{ minRows: 3 }} />
+      <TextField fullWidth multiline label="Expected Answer" id="Answer" sx={{ mb:4 }}
+        onChange={(event) => { onInputChange(event.target.value, setAnswer); }}
+        inputProps={{ minRows: 3 }} />
+      <Button variant="contained" sx={{ float: 'right' }} endIcon={<SendIcon />}
+        onClick={onClickLogin}>
+        Submit
+      </Button>
+    </Container>
+        <Container disableGutters component="section" sx={{ mt: 0, mb: 4, width: '50%', float: 'right' }}>
+      <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
+        {images.map((image) => (
           <ImageIconButton
-            href='/create'
-            style={{ width: '20%', }} >
+            key={image.title}
+            href={image.link}
+            style={{
+              width: image.width,
+            }}
+          >
             <Box
               sx={{
-                position: 'lute',
+                position: 'absolute',
                 left: 0,
                 right: 0,
                 top: 0,
                 bottom: 0,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center 40%',
+                backgroundImage: `url(${image.url})`,
               }}
             />
             <ImageBackdrop className="imageBackdrop" />
@@ -122,63 +141,22 @@ const HomeModel = ({}) => {
                 color="inherit"
                 className="imageTitle"
               >
-                Create A Prompt
+                {image.title}
                 <div className="imageMarked" />
               </Typography>
             </Box>
           </ImageIconButton>
-          <div style={{ width: '20%' }} />
-          <ImageIconButton
-            href='/library'
-            style={{ width: '20%', }} >
-            <Box
-              sx={{
-                position: 'lute',
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center 40%',
-              }}
-            />
-            <ImageBackdrop className="imageBackdrop" />
-            <Box
-              sx={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'common.white',
-              }}
-            >
-              <Typography
-                component="h3"
-                variant="h6"
-                color="inherit"
-                className="imageTitle"
-              >
-                View Library
-                <div className="imageMarked" />
-              </Typography>
-            </Box>
-          </ImageIconButton>
-          <div style={{ width: '20%' }} />
-          <div sx={{ width: '20%' }} />
+        ))}
       </Box>
     </Container>
     </React.Fragment>
   );
 };
 
-export const HomePage = () => {
+export const CreatePage = () => {
   return (
     <Grid>
-      <HomeModel />
+      <CreateModel />
     </Grid>
   );
 };
@@ -250,3 +228,60 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
     transition: theme.transitions.create('opacity'),
   },
 }));
+
+const images = [
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 1',
+    width: '33%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 2',
+    width: '34%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 3',
+    width: '33%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 4',
+    width: '33%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 5',
+    width: '34%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 6',
+    width: '33%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 7',
+    width: '33%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 8',
+    width: '34%',
+    link: 'technique1',
+  },
+  {
+    url: '/img/technique1.jpg',
+    title: 'Technique 9',
+    width: '33%',
+    link: 'technique1',
+  },
+];
