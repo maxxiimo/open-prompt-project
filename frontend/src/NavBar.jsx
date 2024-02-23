@@ -15,6 +15,9 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import ClassIcon from '@mui/icons-material/Class';
+import AddIcon from '@mui/icons-material/Add';
+import Tooltip from '@mui/material/Tooltip';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -24,7 +27,6 @@ const Search = styled('div')(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginRight: theme.spacing(2),
-  marginLeft: 0,
   width: '100%',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
@@ -155,7 +157,7 @@ export const NavBar = () => {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} disableGutters>
       <AppBar position="static">
         <Toolbar>
           <Typography
@@ -166,7 +168,7 @@ export const NavBar = () => {
           >
             Open Prompt Project
           </Typography>
-          <Search>
+          <Search sx={{ display: { xs: 'none', md: 'flex' } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -177,19 +179,15 @@ export const NavBar = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
+            <IconButton size="large" color="inherit">
+              <Tooltip title="New Prompt">
+                <AddIcon />
+              </Tooltip>
             </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
+            <IconButton size="large" color="inherit">
+              <Tooltip title="View Prompt">
+                <ClassIcon />
+              </Tooltip>
             </IconButton>
             <IconButton
               size="large"
@@ -200,7 +198,9 @@ export const NavBar = () => {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <Tooltip title="View Profile">
+                <AccountCircle />
+              </Tooltip>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -221,4 +221,4 @@ export const NavBar = () => {
       {renderMenu}
     </Box>
   );
-}
+Icon}
