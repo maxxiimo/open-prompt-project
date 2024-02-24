@@ -10,6 +10,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { CMTextField } from "./CMTextField";
 import { getHeaderConfig } from "./API_header_config";
@@ -21,6 +22,11 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "./redux/userSlice";
 
 const CreateModel = ({}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const technique_data = JSON.parse(searchParams.get("__technique_data"));
+  const technique_name = JSON.parse(searchParams.get("__technique_name"));
+  // console.log(technique_data);
+  // console.log(JSON.parse(technique_data));
   const [context, setContext] = useState("");
   const [prompt, setPrompt] = useState("");
   const [helperText, setHelperText] = useState({
@@ -84,22 +90,22 @@ const CreateModel = ({}) => {
   return (
 
     <React.Fragment>
-    <Container component="section" sx={{ mt: 8, mb: 4, width: '50%', float: 'left' }}>
-      <CMTextField fullWidth multiline label="Context" id="context" sx={{ mb: 4 }}
+    <Container component="section" sx={{ mt: 8, mb: 2, width: '50%', float: 'left' }}>
+      <Typography
+        component="h3"
+        variant="h6"
+        color="inherit"
+        className="imageTitle"
+      >
+        {technique_name}
+      </Typography><br/>
+      {Array.from(technique_data).map((field, value) => (
+      <CMTextField key={field} fullWidth multiline label={field.label} id={field.id} sx={{ mb: 4 }}
         onChange={(event) => { onInputChange(event.target.value, setContext); }}
-        placeholder={"Tepli/vkidezumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There, scientists generated an early version of the antibody, dubbed OKT3.\' Originally sourced from mice, the molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986, it was approved to help prevent organ rejection after kidney transplants, making it the first therapeutic antibody allowed for human use."}
-        helperText={"Enter any additional information that helps the model understand the broader scenario or background"}
+        placeholder={field.placeholder}
+        helperText={field.helperText}
         inputProps={{ minRows: 3 }} />
-      <CMTextField fullWidth multiline label="Prompt" id="Prompt" sx={{ mb: 4 }}
-        onChange={(event) => { onInputChange(event.target.value, setPrompt); }}
-        placeholder={"What was OKT3 originally sourced from?"}
-        helperText={"Specific information or data you want the model to process"}
-        inputProps={{ minRows: 3 }} />
-      <TextField fullWidth multiline label="Expected Answer" id="Answer" sx={{ mb:4 }}
-        onChange={(event) => { onInputChange(event.target.value, setAnswer); }}
-        placeholder={"Mice."}
-        helperText={"The expected response or elements of the response from the LLM"}
-        inputProps={{ minRows: 3 }} />
+      ))}
       <Button variant="contained" sx={{ float: 'right' }} endIcon={<SendIcon />}
         onClick={onClickLogin}>
         Submit
@@ -240,13 +246,13 @@ const images = [
     url: '#f0e0d0',
     title: 'Zero-Shot Prompting',
     width: '33%',
-    link: 'technique1',
+    link: '/create?__technique_data=[{"id": "prompt", "label": "Prompt", "placeholder": "Can you tell me about the creation of blackholes?", "helperText": "Specific information or an instruction you want the model to process."}, {"id": "answer", "label": "Expected Answer", "placeholder": "Black holes are regions of spacetime where the gravitational force is so strong that nothing, not even light, can escape from it. They are created when a very massive star dies and its core collapses in on itself, forming a singularity of infinite density. The intense gravity of the singularity pulls in all the matter and radiation around it, creating the black hole.", "helperText": "The expected response or elements of the response from the LLM."}]&__technique_name="Zero-Shot Prompting"'
   },
   {
     url: '#e7ceb9',
     title: 'In-Context Learning',
     width: '34%',
-    link: 'technique1',
+    link: '/create?__technique_data=[{"id": "context", "label": "Context", "placeholder": "Imagine you\'re a marketing manager tasked with launching a new product in the fitness industry. How would you design a targeted advertising campaign to appeal to health-conscious consumers aged 25-40?", "helperText": "Enter any additional information that helps the model understand the broader scenario or background.  By providing context or previous instances, the model can better understand and generate the desired output."}, {"id": "prompt", "label": "Prompt", "placeholder": "Consider the platforms, messaging, and imagery you would use to maximize engagement and conversions.", "helperText": "Specific information or an instruction you want the model to process."}, {"id": "answer", "label": "Expected Answer", "placeholder": "The answer should talk about performing audian research, platform selection, messaging, imagery, content strategy, interactive campaigns and measurement and optimization.", "helperText": "The expected response or elements of the response from the LLM."}]&__technique_name="In-Context Learning"'
   },
   {
     url: '#e7ceb9',

@@ -93,7 +93,7 @@ const HomeModel = ({}) => {
       <Box sx={{ margin: 'auto', display: 'flex', flexWrap: 'wrap' }}>
           <div style={{ width: '20%' }} />
           <ImageIconButton
-            href='/create'
+            href='/create?__technique_data=[{"id": "prompt", "label": "Prompt", "placeholder": "Can you tell me about the creation of blackholes?", "helperText": "Specific information or an instruction you want the model to process."}, {"id": "answer", "label": "Expected Answer", "placeholder": "Black holes are regions of spacetime where the gravitational force is so strong that nothing, not even light, can escape from it. They are created when a very massive star dies and its core collapses in on itself, forming a singularity of infinite density. The intense gravity of the singularity pulls in all the matter and radiation around it, creating the black hole.", "helperText": "The expected response or elements of the response from the LLM."}]&__technique_name="Zero-Shot Prompting"'
             style={{ width: '20%', }} >
             <Box
               sx={{
