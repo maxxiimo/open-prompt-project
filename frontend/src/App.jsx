@@ -19,7 +19,22 @@ import { store, persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
-  const theme = createTheme();
+  const theme = createTheme({
+    palette: {
+    primary: {
+      main: "#E3735E",
+      contrastText: "#FFF"
+    },
+    secondary: {
+      main: "#faf0e6",
+      contrastText: "#FFF"
+    },
+    // warning: {
+    //   main: blue[700],
+    //   contrastText: "#FFF"
+    // },
+  },
+  });
 
   const router = createBrowserRouter(
     createRoutesFromElements(
