@@ -10,6 +10,8 @@ import SendIcon from '@mui/icons-material/Send';
 import Link from '@mui/material/Link';
 import Tooltip from '@mui/material/Tooltip';
 import InfoIcon from '@mui/icons-material/Info';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -116,6 +118,7 @@ const CreateModel = ({}) => {
         helperText={field.helperText}
         inputProps={{ minRows: 3 }} />
       ))}
+      <FormControlLabel control={<Checkbox style={{ textColor: 'black' }} color="primary" />} label="Will this question help discover or detect bias?" />
       <Button variant="contained" sx={{ float: 'right' }} endIcon={<SendIcon />}
         onClick={onClickLogin}>
         Submit
