@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import SendIcon from '@mui/icons-material/Send';
+import Link from '@mui/material/Link';
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -87,6 +88,7 @@ const CreateModel = ({}) => {
       .catch((error) => console.error("Error fetching data:", error));
   };
 
+  try {
   return (
 
     <React.Fragment>
@@ -163,6 +165,38 @@ const CreateModel = ({}) => {
     </Container>
     </React.Fragment>
   );
+  } catch (e) {
+  return (
+    <React.Fragment>
+    <Container component="section" sx={{ mt: 8, mb: 2, width: '100%', float: 'left' }}>
+  <Typography
+    component="h3"
+    variant="h6"
+    color="inherit"
+    className="imageTitle"
+  >
+    😣 Sorry!  We're still getting ready!
+      </Typography><br/>
+  <Typography
+    component="p"
+    variant="p"
+    color="inherit"
+    className="imageTitle"
+  >
+    This technique has not been implemented yet.  Please visit https://openpromptproject.org/ for support or check out our &nbsp;
+    <Link underline="underline" href='/create?__technique_data=[{"id": "prompt", "label": "Prompt", "placeholder": "Can you tell me about the creation of blackholes?", "helperText": "Specific information or an instruction you want the model to process."}, {"id": "answer", "label": "Expected Answer", "placeholder": "Black holes are regions of spacetime where the gravitational force is so strong that nothing, not even light, can escape from it. They are created when a very massive star dies and its core collapses in on itself, forming a singularity of infinite density. The intense gravity of the singularity pulls in all the matter and radiation around it, creating the black hole.", "helperText": "The expected response or elements of the response from the LLM."}]&__technique_name="Zero-Shot Prompting"'>
+      <Typography
+        variant="p"
+        noWrap
+      >
+        Zero-Shot Prompt 
+      </Typography>
+    </Link>&nbsp; page.
+  </Typography><br/>
+    </Container>
+    </React.Fragment>
+  );
+  }
 };
 
 export const CreatePage = () => {
@@ -258,42 +292,42 @@ const images = [
     url: '#e7ceb9',
     title: 'Chain-of-Thought (CoT)',
     width: '33%',
-    link: 'technique1',
+    link: '/create',
   },
   {
     url: '#d69264',
     title: 'Role-playing',
     width: '33%',
-    link: 'technique1',
+    link: '/create',
   },
   {
     url: '#c3592b',
     title: 'Feedback Loops',
     width: '34%',
-    link: 'technique1',
+    link: '/create',
   },
   {
     url: '#e1be9b',
     title: 'Adaptive Prompting',
     width: '33%',
-    link: 'technique1',
+    link: '/create',
   },
   {
     url: '#e7ceb9',
     title: 'Multimodal Prompting',
     width: '33%',
-    link: 'technique1',
+    link: '/create',
   },
   {
     url: '#d69264',
     title: 'ReAct',
     width: '34%',
-    link: 'technique1',
+    link: '/create',
   },
   {
     url: '#f0e0d0',
     title: 'Self-Consistency',
     width: '33%',
-    link: 'technique1',
+    link: '/create',
   },
 ];
