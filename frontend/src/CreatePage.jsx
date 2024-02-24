@@ -234,7 +234,7 @@ const ImageBackdrop = styled('div')(({ theme }) => ({
   top: 0,
   bottom: 0,
   background: '#000',
-  opacity: 0.5,
+  opacity: 0.05,
   transition: theme.transitions.create('opacity'),
 }));
 
@@ -252,7 +252,7 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
     zIndex: 1,
   },
   '&:hover .imageBackdrop': {
-    opacity: 0.15,
+    opacity: 0.5,
   },
   '&:hover .imageMarked': {
     opacity: 0,
