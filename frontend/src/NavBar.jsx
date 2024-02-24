@@ -18,6 +18,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import ClassIcon from '@mui/icons-material/Class';
 import AddIcon from '@mui/icons-material/Add';
 import Tooltip from '@mui/material/Tooltip';
+import Link from '@mui/material/Link';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -122,13 +123,13 @@ export const NavBar = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-            <IconButton size="large" color="inherit">
+            <IconButton size="large" color="inherit" href="/create">
                 <AddIcon />
             </IconButton>
         <p>New Prompt</p>
       </MenuItem>
       <MenuItem>
-            <IconButton size="large" color="inherit">
+            <IconButton size="large" color="inherit" href="/library">
                 <ClassIcon />
             </IconButton>
         <p>View Library</p>
@@ -152,14 +153,17 @@ export const NavBar = () => {
     <Box sx={{ flexGrow: 1 }} disableGutters>
       <AppBar position="static">
         <Toolbar>
+          <Link href="/" underline="hover">
           <Typography
             variant="h6"
             noWrap
             component="div"
+            color="white"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
             Open Prompt Project
           </Typography>
+          </Link>
           <Search sx={{ display: { xs: 'none', md: 'flex' } }}>
             <SearchIconWrapper>
               <SearchIcon />
@@ -171,12 +175,12 @@ export const NavBar = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" color="inherit">
+            <IconButton size="large" color="inherit" href="/create">
               <Tooltip title="New Prompt">
                 <AddIcon />
               </Tooltip>
             </IconButton>
-            <IconButton size="large" color="inherit">
+            <IconButton size="large" color="inherit" href="/library">
               <Tooltip title="View Prompt">
                 <ClassIcon />
               </Tooltip>
