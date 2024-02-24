@@ -23,6 +23,17 @@ import { getHeaderConfig } from './API_header_config';
 import { API_URLS } from './APIs';
 import { ROUTE_PATH } from './routePath';
 
+import AppBar from '@mui/material/AppBar';
+import CssBaseline from '@mui/material/CssBaseline';
+import Toolbar from '@mui/material/Toolbar';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import DomainIcon from '@mui/icons-material/Domain';
+import TextsmsIcon from '@mui/icons-material/Textsms';
+
+
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -98,47 +109,69 @@ export const CommunityPage = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', position: 'fixed', zIndex: -1 }}>
+      <CssBaseline />
       <Drawer
+        variant="permanent"
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
+          zIndex: -1,
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
         }}
-        variant="persistent"
-        anchor="left"
-        open={open}
       >
-        <DrawerHeader />
-        <Divider />
-        <List>
-          {['Groups', 'Categories', 'Prompty Techniques', 'Downloads'].map((text, index) => (
-            <ListItem button key={index}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        <Toolbar />
+        <Box sx={{ overflow: 'auto' }}>
+          <List>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <DomainIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Domains' />
+                </ListItemButton>
+              </ListItem>
+            {['Medicine', 'Business', 'Art', 'Literature', 'Science'].map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <TextsmsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Prompt Techniques' />
+                </ListItemButton>
+              </ListItem>
+            {['Zero-Shot Prompting', 'In-Context Prompting', 'Role-Playing'].map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
       </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
-        <Container>
-          <Typography variant="h4" gutterBottom component="h1">
-            The Open Prompt Project
-          </Typography>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, zIndex: -2}}>
+
+
           <Typography variant="h6" gutterBottom component="div">
             Education / Medicine / In-Context Prompting
           </Typography>
-  
-          { }
+
 
           {/* Display Box for Prompt 1 */}
           <DisplayBox elevation={3}>
   <Box display="flex" justifyContent="space-between" alignItems="center">
     <Typography variant="h5" component="h3" gutterBottom>
-      Prompt 2:
+      Prompt 1:
     </Typography>
     <Box>
       <IconButton aria-label="upward">
@@ -153,7 +186,7 @@ export const CommunityPage = () => {
     Context: Teplizumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There, scientists generated an early version of the antibody, dubbed OKT3. Originally sourced from mice, the molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986, it was approved to help prevent organ rejection after kidney transplants, making it the first therapeutic antibody allowed for human use.
   </Typography>
   <Typography variant="body1" component="span" gutterBottom style={{ fontWeight: 'bold' }}>
-    Prompt: 
+    Prompt:
   </Typography>
   <Typography variant="body1" component="span" gutterBottom>
     When was it approved?
@@ -164,7 +197,7 @@ export const CommunityPage = () => {
           <DisplayBox elevation={3}>
   <Box display="flex" justifyContent="space-between" alignItems="center">
     <Typography variant="h5" component="h3" gutterBottom>
-      Prompt 2:
+      Prompt 2: 
     </Typography>
     <Box>
       <IconButton aria-label="upward">
@@ -185,10 +218,10 @@ export const CommunityPage = () => {
     When was OKT3 originally sourced from?
   </Typography>
 </DisplayBox>
-  
-          {/* ... (Grid for mapping prompts) */}
-        </Container>
-      </Main>
+
+
+
+      </Box>
     </Box>
   );
 };
