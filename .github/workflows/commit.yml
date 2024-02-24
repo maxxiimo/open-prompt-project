@@ -11,5 +11,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: build
-        run: make install-front build-front
+      - name: build frontend
+        run: |
+          cd frontend
+          npm install
+          npm run build

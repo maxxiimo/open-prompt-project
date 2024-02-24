@@ -1,9 +1,9 @@
 import React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+import AppBar from '@mui/material/AppBar';
+import Toolbar from "@mui/material/Toolbar";
+import { makeStyles } from '@mui/material/styles';
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
 
 import Tooltip from '@mui/material/Tooltip';
 
@@ -11,30 +11,18 @@ import AddIcon from '@mui/icons-material/Add';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
-
-// react.school/material-ui
-
-const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  title: {
-    flexGrow: 1
-  },
-  offset: theme.mixins.toolbar
-}));
+import ClassIcon from '@mui/icons-material/Class';
 
 
-export default function ButtonAppBar({title, menu, login}) {
+const NavBarModel = ({title, menu, login}) => {
 	// Adapted from https://react.school/material-ui/appbar/
-  const classes = useStyles();
 	const icons = {
 		"Login": <LoginIcon />,
 		"Logout": <LogoutIcon />,
 		"Home": <HomeIcon />,
     "Create": <AddIcon />,
+    "View": <Class />,
 	};
-
 
 
   return (
@@ -59,3 +47,11 @@ export default function ButtonAppBar({title, menu, login}) {
     </React.Fragment>
   );
 }
+
+export const NavBar = () => {
+  return (
+    <Grid>
+      <NavBarModel />
+    </Grid>
+  );
+};

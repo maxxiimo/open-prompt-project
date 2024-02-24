@@ -1,40 +1,45 @@
 {
-  "name": "ui",
-  "version": "1.0.0",
-  "description": "Basic Front-end for the Open Prompt Project",
-  "main": "index.js",
+  "name": "opp-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "open-source", "prompt", "OPP", "open prompt project", "LLMs"
-  ],
-  "author": "nickumia",
-  "license": "GNU GPL v3",
-  "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.17.0",
-    "@babel/preset-env": "^7.15.8",
-    "@babel/preset-react": "^7.14.5",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babelify": "^10.0.0",
-    "browserify": "^17.0.0",
-    "gulp": "^4.0.2",
-    "vinyl-source-stream": "^2.0.0"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@babel/core": "^7.22.20",
-    "@babel/runtime": "^7.22.15",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
-    "@mui/icons-material": "^5.14.9",
-    "@mui/material": "^5.14.13",
-    "crypto-js": "^4.2.0",
-    "fernet": "^0.4.0",
-    "glob-parent": "^6.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^5.3.0"
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/icons-material": "^5.14.19",
+    "@mui/material": "^5.14.19",
+    "@mui/styles": "^5.14.15",
+    "@mui/system": "^5.14.16",
+    "@mui/x-date-pickers": "^6.17.0",
+    "@reduxjs/toolkit": "^1.9.7",
+    "axios": "^1.6.0",
+    "date-fns": "^2.30.0",
+    "dayjs": "^1.11.10",
+    "final-form": "^4.20.10",
+    "mysql": "^2.18.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-final-form": "^6.5.9",
+    "react-redux": "^8.1.3",
+    "react-router-dom": "^6.17.0",
+    "redux": "^4.2.1",
+    "redux-persist": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "vite": "^4.4.5"
   }
 }
