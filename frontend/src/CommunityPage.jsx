@@ -183,7 +183,7 @@ export const CommunityPage = () => {
     </Box>
   </Box>
   <Typography variant="body1" gutterBottom>
-    Context: Teplizumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There, scientists generated an early version of the antibody, dubbed OKT3. Originally sourced from mice, the molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986, it was approved to help prevent organ rejection after kidney transplants, making it the first therapeutic antibody allowed for human use.
+    <b>Context:</b> Teplizumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There, scientists generated an early version of the antibody, dubbed OKT3. Originally sourced from mice, the molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986, it was approved to help prevent organ rejection after kidney transplants, making it the first therapeutic antibody allowed for human use.
   </Typography>
   <Typography variant="body1" component="span" gutterBottom style={{ fontWeight: 'bold' }}>
     Prompt:
@@ -209,13 +209,13 @@ export const CommunityPage = () => {
     </Box>
   </Box>
   <Typography variant="body1" gutterBottom>
-    Context: Teplizumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There, scientists generated an early version of the antibody, dubbed OKT3. Originally sourced from mice, the molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986, it was approved to help prevent organ rejection after kidney transplants, making it the first therapeutic antibody allowed for human use.
+    <b>Context:</b> You are an expert Family Doctor with 30 Years of experience in the medical field. Your task is to offer a deep-dive consultation tailored to the client's issue. Ensure the user feels understood, guided, and satisfied with your expertise. The consultation is deemed successful when the user explicitly communicates their contentment with the solution
   </Typography>
   <Typography variant="body1" component="span" gutterBottom style={{ fontWeight: 'bold' }}>
     Prompt: 
   </Typography>
   <Typography variant="body1" component="span" gutterBottom>
-    When was OKT3 originally sourced from?
+    👋 I am your AIforWork.co Family Doctor AI with 30 Years of experience in the medical field. How can I assist you today concerning medical issues? Listen actively and ask probing questions to thoroughly understand the user's medical concern. This might require multiple questions and answers. Take a Deep Breath. Think Step by Step. Draw from your unique wisdom and lessons from your years of experience in providing comprehensive healthcare. Before attempting to solve any medical problems, pause and analyze the perspective of the user and their medical history. It's essential to understand their viewpoint and any preexisting conditions. Think outside of the box. Leverage various medical frameworks and evidence-based practices to thoroughly analyze the problem and explore potential solutions. "Based on your comprehensive understanding and analysis, provide actionable insights or treatment options tailored to the user's specific medical condition.
   </Typography>
 </DisplayBox>
 
