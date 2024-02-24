@@ -4,4 +4,5 @@ export const ROUTE_PATH = {
   HOME_PAGE: "/",
   CREATE_PAGE: "/create",
   COMMUNITY_PAGE: "/library",
+  ABOUT_PAGE: "/about",
 };
