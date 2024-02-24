@@ -20,6 +20,7 @@ import { API_URLS } from "./APIs";
 import { ROUTE_PATH } from "./routePath";
 import { useDispatch } from "react-redux";
 import { loginUser } from "./redux/userSlice";
+import homevideo from './home.mp4';
 
 const HomeModel = ({}) => {
   const [prompt, setUserName] = useState("");
@@ -85,7 +86,10 @@ const HomeModel = ({}) => {
   return (
 
     <React.Fragment>
-      <Container disableGutters component="section" sx={{ mt: 0, width: '100%' }} style={{ alignItems: 'center', justifyContent: 'center' }}>
+    <video id='background-video' autoPlay loop muted>
+    <source src={homevideo} type='video/mp4' />
+</video>
+      <Container disableGutters component="section" sx={{ mt: 0, pt: '20%', width: '100%' }} style={{ alignItems: 'center', justifyContent: 'center' }}>
       <Box sx={{ margin: 'auto', display: 'flex', flexWrap: 'wrap' }}>
           <div style={{ width: '20%' }} />
           <ImageIconButton
@@ -210,7 +214,7 @@ const ImageBackdrop = styled('div')(({ theme }) => ({
   top: 0,
   bottom: 0,
   background: '#000',
-  opacity: 0.5,
+  opacity: 0.9,
   transition: theme.transitions.create('opacity'),
 }));
 

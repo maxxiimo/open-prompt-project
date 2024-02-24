@@ -7,6 +7,24 @@
   -webkit-text-size-adjust: 100%;
 }
 
-body > #root > div {
-  height: 50vh;
+body {
+  margin-left: 0;
+  padding-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+#background-video{
+
+width: 100%;
+float: left;
+top: 0;
+z-index: -99;
+padding: none;
+opacity: 0.92;
+    overflow: hidden;
+    display: block;
+position: fixed; /* optional depending on what you want to do in your app */
+
+
 }
