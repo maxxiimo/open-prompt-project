@@ -87,15 +87,18 @@ const CreateModel = ({}) => {
     <Container component="section" sx={{ mt: 8, mb: 4, width: '50%', float: 'left' }}>
       <CMTextField fullWidth multiline label="Context" id="context" sx={{ mb: 4 }}
         onChange={(event) => { onInputChange(event.target.value, setContext); }}
-        placeholder={"Teplizumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There, scientists generated an early version of the antibody, dubbed OKT3.\' Originally sourced from mice, the molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986, it was approved to help prevent organ rejection after kidney transplants, making it the first therapeutic antibody allowed for human use."}
+        placeholder={"Tepli/vkidezumab traces its roots to a New Jersey drug company called Ortho Pharmaceutical. There, scientists generated an early version of the antibody, dubbed OKT3.\' Originally sourced from mice, the molecule was able to bind to the surface of T cells and limit their cell-killing potential. In 1986, it was approved to help prevent organ rejection after kidney transplants, making it the first therapeutic antibody allowed for human use."}
+        helperText={"Enter any additional information that helps the model understand the broader scenario or background"}
         inputProps={{ minRows: 3 }} />
       <CMTextField fullWidth multiline label="Prompt" id="Prompt" sx={{ mb: 4 }}
         onChange={(event) => { onInputChange(event.target.value, setPrompt); }}
         placeholder={"What was OKT3 originally sourced from?"}
+        helperText={"Specific information or data you want the model to process"}
         inputProps={{ minRows: 3 }} />
       <TextField fullWidth multiline label="Expected Answer" id="Answer" sx={{ mb:4 }}
         onChange={(event) => { onInputChange(event.target.value, setAnswer); }}
         placeholder={"Mice."}
+        helperText={"The expected response or elements of the response from the LLM"}
         inputProps={{ minRows: 3 }} />
       <Button variant="contained" sx={{ float: 'right' }} endIcon={<SendIcon />}
         onClick={onClickLogin}>
