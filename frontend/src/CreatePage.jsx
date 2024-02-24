@@ -124,7 +124,7 @@ const CreateModel = ({}) => {
                 bottom: 0,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center 40%',
-                backgroundImage: `url(${image.url})`,
+                backgroundColor: `${image.url}`,
               }}
             />
             <ImageBackdrop className="imageBackdrop" />
@@ -237,56 +237,56 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
 
 const images = [
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 1',
+    url: '#f0e0d0',
+    title: 'Zero-Shot Prompting',
     width: '33%',
     link: 'technique1',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 2',
+    url: '#e7ceb9',
+    title: 'In-Context Learning',
     width: '34%',
     link: 'technique1',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 3',
+    url: '#e7ceb9',
+    title: 'Chain-of-Thought (CoT)',
     width: '33%',
     link: 'technique1',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 4',
+    url: '#d69264',
+    title: 'Role-playing',
     width: '33%',
     link: 'technique1',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 5',
+    url: '#c3592b',
+    title: 'Feedback Loops',
     width: '34%',
     link: 'technique1',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 6',
+    url: '#e1be9b',
+    title: 'Adaptive Prompting',
     width: '33%',
     link: 'technique1',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 7',
+    url: '#e7ceb9',
+    title: 'Multimodal Prompting',
     width: '33%',
     link: 'technique1',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 8',
+    url: '#d69264',
+    title: 'ReAct',
     width: '34%',
     link: 'technique1',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 9',
+    url: '#f0e0d0',
+    title: 'Self-Consistency',
     width: '33%',
     link: 'technique1',
   },
