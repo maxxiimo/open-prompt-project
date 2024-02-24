@@ -19,7 +19,7 @@ import ClassIcon from '@mui/icons-material/Class';
 import AddIcon from '@mui/icons-material/Add';
 import Tooltip from '@mui/material/Tooltip';
 import Link from '@mui/material/Link';
-import InfoIcon from '@mui/icons-material/Info';
+import HailIcon from '@mui/icons-material/Hail';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -125,24 +125,30 @@ export const NavBar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <Link href='/create?__technique_data=[{"id": "prompt", "label": "Prompt", "placeholder": "Can you tell me about the creation of blackholes?", "helperText": "Specific information or an instruction you want the model to process."}, {"id": "answer", "label": "Expected Answer", "placeholder": "Black holes are regions of spacetime where the gravitational force is so strong that nothing, not even light, can escape from it. They are created when a very massive star dies and its core collapses in on itself, forming a singularity of infinite density. The intense gravity of the singularity pulls in all the matter and radiation around it, creating the black hole.", "helperText": "The expected response or elements of the response from the LLM."}]&__technique_name="Zero-Shot Prompting"'>
       <MenuItem>
-            <IconButton size="large" color="inherit" href='/about'>
-                <InfoIcon />
-            </IconButton>
-        <p>About OPP</p>
-      </MenuItem>
-      <MenuItem>
-            <IconButton size="large" color="inherit" href='/create?__technique_data=[{"id": "prompt", "label": "Prompt", "placeholder": "Can you tell me about the creation of blackholes?", "helperText": "Specific information or an instruction you want the model to process."}, {"id": "answer", "label": "Expected Answer", "placeholder": "Black holes are regions of spacetime where the gravitational force is so strong that nothing, not even light, can escape from it. They are created when a very massive star dies and its core collapses in on itself, forming a singularity of infinite density. The intense gravity of the singularity pulls in all the matter and radiation around it, creating the black hole.", "helperText": "The expected response or elements of the response from the LLM."}]&__technique_name="Zero-Shot Prompting"'>
+            <IconButton size="large" color="inherit">
                 <AddIcon />
             </IconButton>
         <p>New Prompt</p>
       </MenuItem>
+      </Link>
+      <Link href='/about'>
       <MenuItem>
-            <IconButton size="large" color="inherit" href="/library">
+            <IconButton size="large" color="inherit">
+                <HailIcon />
+            </IconButton>
+        <p>About OPP</p>
+      </MenuItem>
+      </Link>
+      <Link href="/library">
+      <MenuItem>
+            <IconButton size="large" color="inherit">
                 <ClassIcon />
             </IconButton>
         <p>View Library</p>
       </MenuItem>
+      </Link>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -160,7 +166,7 @@ export const NavBar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }} disableGutters>
-      <AppBar position="static">
+      <AppBar position="static" title="OPP">
         <Toolbar>
           <Link href="/" underline="hover">
           <Typography
@@ -184,14 +190,14 @@ export const NavBar = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" color="inherit" href='/about'>
-              <Tooltip title="About OPP">
-                <InfoIcon />
-              </Tooltip>
-            </IconButton>
             <IconButton size="large" color="inherit" href='/create?__technique_data=[{"id": "prompt", "label": "Prompt", "placeholder": "Can you tell me about the creation of blackholes?", "helperText": "Specific information or an instruction you want the model to process."}, {"id": "answer", "label": "Expected Answer", "placeholder": "Black holes are regions of spacetime where the gravitational force is so strong that nothing, not even light, can escape from it. They are created when a very massive star dies and its core collapses in on itself, forming a singularity of infinite density. The intense gravity of the singularity pulls in all the matter and radiation around it, creating the black hole.", "helperText": "The expected response or elements of the response from the LLM."}]&__technique_name="Zero-Shot Prompting"'>
               <Tooltip title="New Prompt">
                 <AddIcon />
+              </Tooltip>
+            </IconButton>
+            <IconButton size="large" color="inherit" href='/about'>
+              <Tooltip title="About OPP">
+                <HailIcon />
               </Tooltip>
             </IconButton>
             <IconButton size="large" color="inherit" href="/library">

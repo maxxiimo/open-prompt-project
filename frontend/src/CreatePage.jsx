@@ -8,6 +8,8 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import SendIcon from '@mui/icons-material/Send';
 import Link from '@mui/material/Link';
+import Tooltip from '@mui/material/Tooltip';
+import InfoIcon from '@mui/icons-material/Info';
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -100,7 +102,13 @@ const CreateModel = ({}) => {
         className="imageTitle"
       >
         {technique_name}
-      </Typography><br/>
+      <Link href="https://www.promptingguide.ai/">
+        <Tooltip title="Learn more about this technique">
+          <InfoIcon />
+        </Tooltip>
+      </Link>
+      </Typography>
+    <br/>
       {Array.from(technique_data).map((field, value) => (
       <CMTextField key={field} fullWidth multiline label={field.label} id={field.id} sx={{ mb: 4 }}
         onChange={(event) => { onInputChange(event.target.value, setContext); }}

@@ -58,13 +58,21 @@ const AboutModel = ({}) => {
           <Typography variant="h4">
             Resources to give context to what we do
           </Typography><br/>
-          <Typography variant="h6" style={{ lineHeight: 2.5 }}>
-            An <a href="https://www.whitehouse.gov/briefing-room/presidential-actions/2023/10/30/executive-order-on-the-safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence/">Executive Order on the Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence</a> from the White House. <br/>
-            The <a href="https://www.nist.gov/artificial-intelligence">NIST AI Framework</a>.<br/>
-            The <a href="https://pulitzercenter.org/journalism/initiatives/ai-accountability-network">AI Accountability Network</a> spearheaded by the Pulitzer Center on Crisis Reporting.<br/>
+          <Typography variant="h6" style={{ lineHeight: 2.5, paddingLeft: 16, paddingRight: 16 }}>
+            An <a href="https://www.whitehouse.gov/briefing-room/presidential-actions/2023/10/30/executive-order-on-the-safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence/">Executive Order on the Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence</a> from the White House "places the highest urgency on governing the development and use of AI safely and responsibly, and is therefore advancing a coordinated, Federal Government-wide approach to doing so." <br/>
+            The <a href="https://www.nist.gov/artificial-intelligence">NIST AI Framework</a> "contributes to the research, standards and data required to realize the full promise of artificial intelligence (AI) as a tool that will enable American innovation, enhance economic security and improve our quality of life".<br/>
+            The <a href="https://pulitzercenter.org/journalism/initiatives/ai-accountability-network">AI Accountability Network</a>, spearheaded by the Pulitzer Center on Crisis Reporting, "seeks to address the knowledge imbalance on artificial intelligence that exists in the journalism industry and to create a multidisciplinary and collaborative ecosystem that enables journalists to report on this fast-evolving topic with skill, nuance, and impact".<br/>
           </Typography>
         </Item>
         <br/>
+        <Item elevation={8} height={100} lineHeight={'100px'} style={{ paddingTop: '3%', paddingBottom: '3%' }}>
+          <Typography variant="h4">
+            Responsibility Metrics
+          </Typography> <br/>
+            <Button sx={{ ml: 4, mr: 4 }} variant="contained" href="https://unsceb.org/principles-ethical-use-artificial-intelligence-united-nations-system">United Nations</Button>
+            <Button sx={{ ml: 4, mr: 4 }} variant="contained" href="https://ai.google/responsibility/responsible-ai-practices/">Google</Button>
+            <Button sx={{ ml: 4, mr: 4 }} variant="contained" href="https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai?view=azureml-api-2">Microsoft</Button>
+        </Item> <br/>
       </Container>
     </React.Fragment>
   );
