@@ -7,9 +7,15 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import SendIcon from '@mui/icons-material/Send';
+import Link from '@mui/material/Link';
+import Tooltip from '@mui/material/Tooltip';
+import InfoIcon from '@mui/icons-material/Info';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { CMTextField } from "./CMTextField";
 import { getHeaderConfig } from "./API_header_config";
@@ -21,11 +27,16 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "./redux/userSlice";
 
 const CreateModel = ({}) => {
-  const [prompt, setUserName] = useState("");
-  const [answer, setPassword] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const technique_data = JSON.parse(searchParams.get("__technique_data"));
+  const technique_name = JSON.parse(searchParams.get("__technique_name"));
+  // console.log(technique_data);
+  // console.log(JSON.parse(technique_data));
+  const [context, setContext] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [helperText, setHelperText] = useState({
-    username: "",
-    answer: "",
+    context: "Test",
+    prompt: "",
     userRole: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
@@ -42,7 +53,7 @@ const CreateModel = ({}) => {
 
   const onInputChange = (value, setDetails) => {
     setErrorMessage("");
-    setHelperText({ username: "", answer: "" });
+    setHelperText({ context: "", prompt: "" });
     setDetails(value);
   };
 
@@ -81,19 +92,33 @@ const CreateModel = ({}) => {
       .catch((error) => console.error("Error fetching data:", error));
   };
 
+  try {
   return (
 
     <React.Fragment>
-    <Container component="section" sx={{ mt: 8, mb: 4, width: '50%', float: 'left' }}>
-      <TextField fullWidth multiline label="Context" id="Context" sx={{ mb: 4 }}
+    <Container component="section" sx={{ mt: 8, mb: 2, width: '50%', float: 'left' }}>
+      <Typography
+        component="h3"
+        variant="h6"
+        color="inherit"
+        className="imageTitle"
+      >
+        {technique_name}
+      <Link href="https://www.promptingguide.ai/">
+        <Tooltip title="Learn more about this technique">
+          <InfoIcon />
+        </Tooltip>
+      </Link>
+      </Typography>
+    <br/>
+      {Array.from(technique_data).map((field, value) => (
+      <CMTextField key={field} fullWidth multiline label={field.label} id={field.id} sx={{ mb: 4 }}
         onChange={(event) => { onInputChange(event.target.value, setContext); }}
+        placeholder={field.placeholder}
+        helperText={field.helperText}
         inputProps={{ minRows: 3 }} />
-      <TextField fullWidth multiline label="Prompt" id="Prompt" sx={{ mb: 4 }}
-        onChange={(event) => { onInputChange(event.target.value, setPrompt); }}
-        inputProps={{ minRows: 3 }} />
-      <TextField fullWidth multiline label="Expected Answer" id="Answer" sx={{ mb:4 }}
-        onChange={(event) => { onInputChange(event.target.value, setAnswer); }}
-        inputProps={{ minRows: 3 }} />
+      ))}
+      <FormControlLabel control={<Checkbox style={{ textColor: 'black' }} color="primary" />} label="Will this question help discover or detect bias?" />
       <Button variant="contained" sx={{ float: 'right' }} endIcon={<SendIcon />}
         onClick={onClickLogin}>
         Submit
@@ -118,7 +143,7 @@ const CreateModel = ({}) => {
                 bottom: 0,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center 40%',
-                backgroundImage: `url(${image.url})`,
+                backgroundColor: `${image.url}`,
               }}
             />
             <ImageBackdrop className="imageBackdrop" />
@@ -151,6 +176,38 @@ const CreateModel = ({}) => {
     </Container>
     </React.Fragment>
   );
+  } catch (e) {
+  return (
+    <React.Fragment>
+    <Container component="section" sx={{ mt: 8, mb: 2, width: '100%', float: 'left' }}>
+  <Typography
+    component="h3"
+    variant="h6"
+    color="inherit"
+    className="imageTitle"
+  >
+    😣 Sorry!  We're still getting ready!
+      </Typography><br/>
+  <Typography
+    component="p"
+    variant="p"
+    color="inherit"
+    className="imageTitle"
+  >
+    This technique has not been implemented yet.  Please visit https://openpromptproject.org/ for support or check out our &nbsp;
+    <Link underline="underline" href='/create?__technique_data=[{"id": "prompt", "label": "Prompt", "placeholder": "Can you tell me about the creation of blackholes?", "helperText": "Specific information or an instruction you want the model to process."}, {"id": "answer", "label": "Expected Answer", "placeholder": "Black holes are regions of spacetime where the gravitational force is so strong that nothing, not even light, can escape from it. They are created when a very massive star dies and its core collapses in on itself, forming a singularity of infinite density. The intense gravity of the singularity pulls in all the matter and radiation around it, creating the black hole.", "helperText": "The expected response or elements of the response from the LLM."}]&__technique_name="Zero-Shot Prompting"'>
+      <Typography
+        variant="p"
+        noWrap
+      >
+        Zero-Shot Prompt 
+      </Typography>
+    </Link>&nbsp; page.
+  </Typography><br/>
+    </Container>
+    </React.Fragment>
+  );
+  }
 };
 
 export const CreatePage = () => {
@@ -188,7 +245,7 @@ const ImageBackdrop = styled('div')(({ theme }) => ({
   top: 0,
   bottom: 0,
   background: '#000',
-  opacity: 0.5,
+  opacity: 0.05,
   transition: theme.transitions.create('opacity'),
 }));
 
@@ -206,7 +263,7 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
     zIndex: 1,
   },
   '&:hover .imageBackdrop': {
-    opacity: 0.15,
+    opacity: 0.5,
   },
   '&:hover .imageMarked': {
     opacity: 0,
@@ -231,57 +288,57 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
 
 const images = [
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 1',
+    url: '#f0e0d0',
+    title: 'Zero-Shot Prompting',
     width: '33%',
-    link: 'technique1',
+    link: '/create?__technique_data=[{"id": "prompt", "label": "Prompt", "placeholder": "Can you tell me about the creation of blackholes?", "helperText": "Specific information or an instruction you want the model to process."}, {"id": "answer", "label": "Expected Answer", "placeholder": "Black holes are regions of spacetime where the gravitational force is so strong that nothing, not even light, can escape from it. They are created when a very massive star dies and its core collapses in on itself, forming a singularity of infinite density. The intense gravity of the singularity pulls in all the matter and radiation around it, creating the black hole.", "helperText": "The expected response or elements of the response from the LLM."}]&__technique_name="Zero-Shot Prompting"'
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 2',
+    url: '#e7ceb9',
+    title: 'In-Context Learning',
     width: '34%',
-    link: 'technique1',
+    link: '/create?__technique_data=[{"id": "context", "label": "Context", "placeholder": "Imagine you\'re a marketing manager tasked with launching a new product in the fitness industry. How would you design a targeted advertising campaign to appeal to health-conscious consumers aged 25-40?", "helperText": "Enter any additional information that helps the model understand the broader scenario or background.  By providing context or previous instances, the model can better understand and generate the desired output."}, {"id": "prompt", "label": "Prompt", "placeholder": "Consider the platforms, messaging, and imagery you would use to maximize engagement and conversions.", "helperText": "Specific information or an instruction you want the model to process."}, {"id": "answer", "label": "Expected Answer", "placeholder": "The answer should talk about performing audian research, platform selection, messaging, imagery, content strategy, interactive campaigns and measurement and optimization.", "helperText": "The expected response or elements of the response from the LLM."}]&__technique_name="In-Context Learning"'
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 3',
+    url: '#e7ceb9',
+    title: 'Chain-of-Thought (CoT)',
     width: '33%',
-    link: 'technique1',
+    link: '/create',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 4',
+    url: '#d69264',
+    title: 'Role-playing',
     width: '33%',
-    link: 'technique1',
+    link: '/create',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 5',
+    url: '#c3592b',
+    title: 'Feedback Loops',
     width: '34%',
-    link: 'technique1',
+    link: '/create',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 6',
+    url: '#e1be9b',
+    title: 'Adaptive Prompting',
     width: '33%',
-    link: 'technique1',
+    link: '/create',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 7',
+    url: '#e7ceb9',
+    title: 'Multimodal Prompting',
     width: '33%',
-    link: 'technique1',
+    link: '/create',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 8',
+    url: '#d69264',
+    title: 'ReAct',
     width: '34%',
-    link: 'technique1',
+    link: '/create',
   },
   {
-    url: '/img/technique1.jpg',
-    title: 'Technique 9',
+    url: '#f0e0d0',
+    title: 'Self-Consistency',
     width: '33%',
-    link: 'technique1',
+    link: '/create',
   },
 ];

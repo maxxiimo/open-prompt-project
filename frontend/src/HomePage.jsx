@@ -20,6 +20,7 @@ import { API_URLS } from "./APIs";
 import { ROUTE_PATH } from "./routePath";
 import { useDispatch } from "react-redux";
 import { loginUser } from "./redux/userSlice";
+import homevideo from './home.mp4';
 
 const HomeModel = ({}) => {
   const [prompt, setUserName] = useState("");
@@ -85,11 +86,14 @@ const HomeModel = ({}) => {
   return (
 
     <React.Fragment>
-      <Container disableGutters component="section" sx={{ mt: 0, width: '100%' }} style={{ alignItems: 'center', justifyContent: 'center' }}>
+    <video id='background-video' autoPlay loop muted>
+    <source src={homevideo} type='video/mp4' />
+</video>
+      <Container disableGutters component="section" sx={{ mt: 0, pt: '20%', width: '100%' }} style={{ alignItems: 'center', justifyContent: 'center' }}>
       <Box sx={{ margin: 'auto', display: 'flex', flexWrap: 'wrap' }}>
           <div style={{ width: '20%' }} />
           <ImageIconButton
-            href='/create'
+            href='/create?__technique_data=[{"id": "prompt", "label": "Prompt", "placeholder": "Can you tell me about the creation of blackholes?", "helperText": "Specific information or an instruction you want the model to process."}, {"id": "answer", "label": "Expected Answer", "placeholder": "Black holes are regions of spacetime where the gravitational force is so strong that nothing, not even light, can escape from it. They are created when a very massive star dies and its core collapses in on itself, forming a singularity of infinite density. The intense gravity of the singularity pulls in all the matter and radiation around it, creating the black hole.", "helperText": "The expected response or elements of the response from the LLM."}]&__technique_name="Zero-Shot Prompting"'
             style={{ width: '20%', }} >
             <Box
               sx={{
@@ -210,7 +214,7 @@ const ImageBackdrop = styled('div')(({ theme }) => ({
   top: 0,
   bottom: 0,
   background: '#000',
-  opacity: 0.5,
+  opacity: 0.9,
   transition: theme.transitions.create('opacity'),
 }));
 
